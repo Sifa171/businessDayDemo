@@ -90,6 +90,29 @@ oc logs -f $POD_ID
   ```
   oc run analyze -it --image=$IMAGE_REGISTRY_IP/$PROJECTNAME/analyze --restart=Always
   ```
+3. Deployment Strategies<br>
+<i>Now it is time to explain the different kinds of deployment strategies based on the mlbparks DeploymentConfig. Start with 'Recreate'! Just do it live in the web interface</i>
+  - If you finished explaining 'recreate' follow these steps and explain what exactly happens TODO: Maybe build a new version and push it to latest
+  ```
+  oc replace -f misc/scripts/dc-with-rolling-upgrade.yaml
+  oc rollout latest dc/mlbparks
+  ```
 
+### Failover Scenerios
+1. Pod crashes
+2. Liveness probe fails
+3. Readiness probe fails
+
+### Logging & Debugging
+1. Debug Terminal
+2. Remote Debugging
+3. EFK
+
+### Development Tools
+1. JBoss Tools
+2. oc cluster up
+3. minishift
+
+## Links
 
   [aa426728]: https://github.com/Sifa91/businessDayDemo/blob/master/misc/source-to-image.pdf "Source to Image"
