@@ -44,13 +44,14 @@ To use this demo create a new project in your OpenShift 3 instance, switch into 
 oc new-project $Projectname
 oc project $Projectname
 git clone https://github.com/Sifa91/businessDayDemo.git
+cd cd $PATH_TO_YOUR_CLONED_REPO
 ```
 ### Build and Deploy an image
 1. Source to Image
-  - For explanation just use [this][aa426728] presemtation
+  - For explanation just use [this][aa426728] presentation
   - First create the template in your project and process it
   ```
-  oc create -f https://github.com/Sifa91/businessDayDemo/blob/master/mlbparks-template-eap.json
+  oc create -f mlbparks-template-eap.json
   oc new-app --template=mlbparks-eap
   ```
   - To follow logs from any pod use
@@ -60,7 +61,6 @@ oc logs -f $POD_ID
 ```
   - You got the opportunity to influence the build process by adding a new directory in your root folder '.s2i/bin'
   ```
-  cd $PATH_TO_YOUR_CLONED_REPO
   mkdir -p .s2i/bin
   cp misc/scripts/assemble .s2i/bin/
   ```
@@ -68,6 +68,16 @@ oc logs -f $POD_ID
   ```
   oc start-build mlbparks --follow
   ```
+  - Now it is time to define some health checks and explain them. Be flexible! Show some scenerios by editing the DeploymentConfig live in the web interface
+  ```
+  oc replace -f misc/scripts/dc-with-health-checks.yaml
+  ```
 
+2. Docker Strategy<br>
+<i>Imagine you would like to use an image just for analyze purposes, but you do not have one and there is no out of the box imag, which you could use. So you wrote your own one, tested it locally and want to use it as your analyze container in OpenShift now.</i>
+  - Create a new BuildConfig, which uses docker strategy
+  ```
+  oc create -f misc/scripts/bc-analyze-image.yaml
+  ```
 
   [aa426728]: https://github.com/Sifa91/businessDayDemo/blob/master/misc/source-to-image.pdf "Source to Image"

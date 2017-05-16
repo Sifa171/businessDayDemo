@@ -39,7 +39,7 @@ spec:
           value: root
         - name: MONGODB_ADMIN_PASSWORD
           value: w3U05Pun
-        image: 172.30.181.31:5000/businessday/mlbparks@sha256:00a632948dd84bf0a83e196f87f4fad0b37be45d2ecf60feffeee66d00e2cb64
+        image: 172.30.181.31:5000/businessday/mlbparks:latest
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
