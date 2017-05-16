@@ -1,3 +1,6 @@
+### JBoss Business Day 2017 - OpenShift in der Praxis
+##### Based on gshipleys mlbParks example (https://github.com/gshipley/openshift3mlbparks)
+
 1. Vorstellung
 2. Build and Deploy an image
   a. Source to Image
