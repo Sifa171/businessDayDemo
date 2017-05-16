@@ -1,5 +1,5 @@
 1. Vorstellung
-2. Build and Deploy an image?
+2. Build and Deploy an image
   a. Source to Image
     - Erläutern (Folien)
     - MLB Parks Template (erläutern und einspielen)
