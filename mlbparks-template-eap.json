@@ -25,7 +25,7 @@
       {
          "description": "Git source URI for application",
          "name": "GIT_URI",
-         "value": "https://github.com/Sifa91/openshift3mlbparks.git"
+         "value": "https://github.com/Sifa91/businessDayDemo.git"
       },
       {
          "description": "Git branch/tag reference",
@@ -324,22 +324,6 @@
                               "protocol": "TCP"
                            }
                         ],
-                                "readinessProbe": {
-                                  "timeoutSeconds": 3,
-                                  "initialDelaySeconds": 3,
-                                  "httpGet": {
-                                    "path": "/",
-                                    "port": 8080
-                                  }
-                                },
-                                "livenessProbe": {
-                                  "timeoutSeconds": 3,
-                                  "initialDelaySeconds": 30,
-                                  "httpGet": {
-                                    "path": "/",
-                                    "port": 8080
-                                    }
-                        },
                         "env": [
                            {
                               "name": "OPENSHIFT_DNS_PING_SERVICE_NAME",

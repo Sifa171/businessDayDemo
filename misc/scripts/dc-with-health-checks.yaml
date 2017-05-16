@@ -1,0 +1,92 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  creationTimestamp: null
+  generation: 1
+  labels:
+    app: mlbparks-eap
+    application: mlbparks
+    createdBy: template-mlbparks-eap
+    deploymentConfig: mlbparks
+  name: mlbparks
+spec:
+  replicas: 1
+  selector:
+    deploymentConfig: mlbparks
+  strategy:
+    activeDeadlineSeconds: 21600
+    recreateParams:
+      timeoutSeconds: 600
+    resources: {}
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        deploymentConfig: mlbparks
+    spec:
+      containers:
+      - env:
+        - name: OPENSHIFT_DNS_PING_SERVICE_NAME
+          value: mlbparks-ping
+        - name: OPENSHIFT_DNS_PING_SERVICE_PORT
+          value: "8888"
+        - name: MONGODB_USER
+          value: userwaE
+        - name: MONGODB_PASSWORD
+          value: CoKruEAi
+        - name: MONGODB_DATABASE
+          value: root
+        - name: MONGODB_ADMIN_PASSWORD
+          value: w3U05Pun
+        image: 172.30.181.31:5000/businessday/mlbparks@sha256:00a632948dd84bf0a83e196f87f4fad0b37be45d2ecf60feffeee66d00e2cb64
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 3
+        name: mlbparks
+        ports:
+        - containerPort: 8080
+          name: mlbparks-http
+          protocol: TCP
+        - containerPort: 8888
+          name: mlbparks-ping
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 3
+        resources: {}
+        securityContext:
+          capabilities: {}
+          privileged: false
+        terminationMessagePath: /dev/termination-log
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - mlbparks
+      from:
+        kind: ImageStreamTag
+        name: mlbparks:latest
+        namespace: businessday
+    type: ImageChange
+  - type: ConfigChange

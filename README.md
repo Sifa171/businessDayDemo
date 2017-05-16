@@ -48,9 +48,10 @@ git clone https://github.com/Sifa91/businessDayDemo.git
 ### Build and Deploy an image
 1. Source to Image
   - For explanation just use [this][aa426728] presemtation
-  - First create the template in your project
+  - First create the template in your project and process it
   ```
   oc create -f https://github.com/Sifa91/businessDayDemo/blob/master/mlbparks-template-eap.json
+  oc new-app --template=mlbparks-eap
   ```
   - To follow logs from any pod use
 ```
