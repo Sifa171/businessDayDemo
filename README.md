@@ -39,3 +39,8 @@ The demo deals with development and operational issues too.
 ### Q&A
 
 ## How to use this demo
+### Build and Deploy an image
+1. Source to Image
+  - Just use [this][aa426728] presemtation
+
+  [aa426728]: https://github.com/Sifa91/businessDayDemo/blob/master/misc/source-to-image.pdf "Source to Image"
