@@ -1,22 +1,20 @@
 apiVersion: v1
-  kind: BuildConfig
-  metadata:
-    name: analyze-adv
-    labels:
-      app: analyze-adv
-  spec:
-    output:
-      to:
-        kind: ImageStreamTag
-        name: 'analyze-adv:latest'
-    source:
-      contextDir: docker
-      git:
-        uri: https://github.com/Sifa91/businessDayDemo.git
-      sourceSecret:
-        name: gitsecret
-      type: Git
-    strategy:
-      dockerStrategy: {}
-      type: Docker
-    triggers: []
+kind: BuildConfig
+metadata:
+  name: analyze
+  labels:
+    app: analyze
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'analyze:latest'
+  source:
+    contextDir: docker
+    git:
+      uri: https://github.com/Sifa91/businessDayDemo.git
+    type: Git
+  strategy:
+    dockerStrategy: {}
+    type: Docker
+  triggers: []
