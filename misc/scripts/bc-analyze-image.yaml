@@ -10,9 +10,9 @@ apiVersion: v1
         kind: ImageStreamTag
         name: 'analyze-adv:latest'
     source:
-      contextDir: image
+      contextDir: docker
       git:
-        uri: https://
+        uri: https://github.com/Sifa91/businessDayDemo.git
       sourceSecret:
         name: gitsecret
       type: Git
