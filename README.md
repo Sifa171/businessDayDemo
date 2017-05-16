@@ -57,6 +57,16 @@ git clone https://github.com/Sifa91/businessDayDemo.git
 oc get pods
 oc logs -f $POD_ID
 ```
-  -
+  - You got the opportunity to influence the build process by adding a new directory in your root folder '.s2i/bin'
+  ```
+  cd $PATH_TO_YOUR_CLONED_REPO
+  mkdir -p .s2i/bin
+  cp misc/scripts/assemble .s2i/bin/
+  ```
+  Now commit your changes and push them to your repo. Afterwards trigger a new build and follow the logs
+  ```
+  oc start-build mlbparks --follow
+  ```
+
 
   [aa426728]: https://github.com/Sifa91/businessDayDemo/blob/master/misc/source-to-image.pdf "Source to Image"
