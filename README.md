@@ -39,8 +39,24 @@ The demo deals with development and operational issues too.
 ### Q&A
 
 ## How to use this demo
+To use this demo create a new project in your OpenShift 3 instance, switch into it and clone this repo.
+```
+oc new-project $Projectname
+oc project $Projectname
+git clone https://github.com/Sifa91/businessDayDemo.git
+```
 ### Build and Deploy an image
 1. Source to Image
-  - Just use [this][aa426728] presemtation
+  - For explanation just use [this][aa426728] presemtation
+  - First create the template in your project
+  ```
+  oc create -f https://github.com/Sifa91/businessDayDemo/blob/master/mlbparks-template-eap.json
+  ```
+  - To follow logs from any pod use
+```
+oc get pods
+oc logs -f $POD_ID
+```
+  -
 
   [aa426728]: https://github.com/Sifa91/businessDayDemo/blob/master/misc/source-to-image.pdf "Source to Image"
