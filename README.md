@@ -1,28 +1,31 @@
-### JBoss Business Day 2017 - OpenShift in der Praxis
+# JBoss Business Day 2017 - OpenShift in der Praxis
 ##### Based on gshipleys mlbParks example (https://github.com/gshipley/openshift3mlbparks)
 
-1. Vorstellung
-2. Build and Deploy an image
-  a. Source to Image
+## Agenda
+### Build and Deploy an image
+  1. Source to Image
     - Erläutern (Folien)
     - MLB Parks Template (erläutern und einspielen)
     - Logs zeigen
     - Build Prozess beeinflussen
     - Heath Checks erläutern
-  b. Docker Strategy
+  2. Docker Strategy
     - DockerHub Example nutzen
-  c. Deployment Strategien
+  3. Deployment Strategien
     - recreate
     - rolling
-5. Failover Szenarien
-  a. Pods deleten
-6. Logging & Debugging
-  a. Debug Terminal
-  b. Remote Debugging
-  c. EFK
-7. Development Tools
-  a. JBoss Tools
-  b. oc cluster up
-  c. minishift
-8. Q&A
 
+### Failover Szenarien
+  1. Pods deleten
+
+### Logging & Debugging
+  1. Debug Terminal
+  2. Remote Debugging
+  3. EFK
+
+### Development Tools
+  1. JBoss Tools
+  2. oc cluster up
+  3. minishift
+
+### Q&A
