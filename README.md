@@ -26,7 +26,7 @@ This demo deals with developmental and operational issues and takes roughly a ho
 
   [f1572854]: https://github.com/Sifa91/businessDayDemo#how-to-use-this-demo "How to"
 
-### Failover Scenerios
+### Failover scenarios
   1. Pod crashes
   2. Health Checks fail
 
@@ -44,8 +44,8 @@ This demo deals with developmental and operational issues and takes roughly a ho
 ## How to use this demo
 To use this demo create a new project in your OpenShift 3 instance, switch into it and clone this repo.
 ```
+oc login $OPENSHIFT_MASTER_URL
 oc new-project $PROJECTNAME
-oc project $PROJECTNAME
 git clone https://github.com/Sifa91/businessDayDemo.git
 cd $PATH_TO_YOUR_CLONED_REPO
 ```
@@ -114,7 +114,7 @@ oc logs -f $POD_ID
   ```
   Navigate to the terminal in the web interface or use 'oc rsh $POD_ID' to show the mounted file.
 
-### Failover Scenerios
+### Failover scenarios
 1. Pod crashes
   - Just use commands like 'oc delete pod $POD_ID' or 'exit 0' inside of the pod
 2. Health Checks fail
@@ -128,6 +128,7 @@ oc logs -f $POD_ID
   - While the deployment is running you can find a link at the bottom of the page that directs you to a debug terminal
 ![  Debug Terminal](https://github.com/Sifa91/businessDayDemo/blob/master/misc/img/debug_terminal.png)
 2. EFK
+  - You can show the EFK and explain what happens with all the logs
 
 ### Development Tools
 1. JBoss Tools
