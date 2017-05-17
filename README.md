@@ -1,11 +1,11 @@
 # JBoss Business Day 2017 - OpenShift in action
 ##### Based on Grant Shipleys MLB Parks example (https://github.com/gshipley/openshift3mlbparks)
 
-This is a short demo of OpenShift 3, as part of the so called <b>Viada JBoss Business Day 2017</b> in Frankfurt.
+This is a short demo of OpenShift 3, as part of <b>Viada JBoss Business Day 2017</b> in Frankfurt.
 
-This demo deals with development and operational issues too and takes roughly a hour.
+This demo deals with developmental and operational issues and takes roughly a hour.
 
- If you want to reuse this demo, just follow the [instructions][f1572854] explained at the bottom of the page.    
+ If you want to reuse this demo, just follow the [instructions][f1572854] at the bottom of the page.    
 ## Agenda
 ### Build and Deploy an image
   1. Source to Image
@@ -32,8 +32,7 @@ This demo deals with development and operational issues too and takes roughly a 
 
 ### Logging & Debugging
   1. Debug Terminal
-  2. Remote Debugging
-  3. EFK
+  2. EFK
 
 ### Development Tools
   1. JBoss Tools
@@ -48,7 +47,7 @@ To use this demo create a new project in your OpenShift 3 instance, switch into 
 oc new-project $PROJECTNAME
 oc project $PROJECTNAME
 git clone https://github.com/Sifa91/businessDayDemo.git
-cd cd $PATH_TO_YOUR_CLONED_REPO
+cd $PATH_TO_YOUR_CLONED_REPO
 ```
 ### Build and Deploy an image
 1. Source to Image
@@ -63,7 +62,7 @@ cd cd $PATH_TO_YOUR_CLONED_REPO
 oc get pods
 oc logs -f $POD_ID
 ```
-  - You got the opportunity to influence the build process by adding a new directory in your root folder '.s2i/bin'
+  - You can influence the build process by adding a new directory in your root folder '.s2i/bin'
   ```
   mkdir -p .s2i/bin
   cp misc/scripts/assemble .s2i/bin/
@@ -72,14 +71,14 @@ oc logs -f $POD_ID
   ```
   oc start-build mlbparks --follow
   ```
-  - Now it is time to define some health checks and explain them. Be flexible! Show some scenerios by editing the DeploymentConfig live in the web interface
+  - Now it is time to define some health checks and explain them. Be flexible! Show some scenarios by editing the DeploymentConfig live in the web interface
   ```
   oc replace -f misc/scripts/dc-with-health-checks.yaml
   ```
 
 2. Docker Strategy<br>
-<i>Imagine you would like to use an image just for analyze purposes, but you do not have one and there is no out of the box imag, which you could use. So you wrote your own one, tested it locally and want to use it as your analyze container in OpenShift now.</i>
-  - Create a new ImageStream and BuildConfig, which uses docker strategy
+<i>Imagine you would like to use an image just for analysis, but you do not have one and there is no out of the box image that you could use. So you write your own, test it locally and use it as your analyze container in OpenShift now.</i>
+  - Create a new ImageStream and a BuildConfig that uses the docker strategy
   ```
   oc create -f misc/scripts/is-analyze-image.yaml
   oc create -f misc/scripts/bc-analyze-image.yaml
@@ -88,14 +87,15 @@ oc logs -f $POD_ID
   ```
   oc start-build analyze --follow
   ```
-  - It is time to run your analyze container! But before you need to figure out which IP your registry has. You can copy it from the 'pull spec' in your ImageStream
+  - It is time to run your analyze container! But first you need to figure out which IP your registry has. You can copy it from the 'pull spec' in your ImageStream
   ```
   oc run analyze -it --image=$IMAGE_REGISTRY_IP/$PROJECTNAME/analyze --restart=Always
   ```
 3. Deployment Strategies<br>
 <i>Now it is time to explain the different kinds of deployment strategies based on the mlbparks DeploymentConfig. Start with 'Recreate'! Just do it live in the web interface</i>
-  - If you finished explaining 'recreate' follow these steps and explain what exactly happens TODO: Maybe build a new version and push it to latest
+  - If you finished explaining 'recreate' follow these steps and explain what exactly happens. At this point you could make some code changes, push them and make a new build to show that the old version is active until the new pod is ready. (Hint: Use Eclipse and explain the JBoss Tools)
   ```
+  oc start-build analyze --follow
   oc replace -f misc/scripts/dc-with-rolling-upgrade.yaml
   oc rollout latest dc/mlbparks
   ```
@@ -125,8 +125,9 @@ oc logs -f $POD_ID
 
 ### Logging & Debugging
 1. Debug Terminal
-2. Remote Debugging
-3. EFK
+  - While the deployment is running you can find a link at the bottom of the page that directs you to a debug terminal
+  
+2. EFK
 
 ### Development Tools
 1. JBoss Tools
