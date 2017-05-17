@@ -17,7 +17,7 @@ This demo deals with development and operational issues too and takes roughly a 
   2. Docker Strategy
     - How to use Docker Images
     - Logs
-  3. Deployment Strategies and configuration
+  3. Deployment Strategies
     - Recreate
     - Rolling
   4. Configuration
@@ -131,5 +131,11 @@ oc logs -f $POD_ID
 3. minishift
 
 ## Links
+
+- OpenShift Documentation: https://docs.openshift.com/index.html
+- OpenShift Blog: https://blog.openshift.com/
+- MiniShift: https://github.com/minishift/minishift
+- OpenShift for Developers: https://www.openshift.com/promotions/for-developers.html
+- Viada GmbH & CO. KG: https://www.viada.de
 
   [aa426728]: https://github.com/Sifa91/businessDayDemo/blob/master/misc/source-to-image.pdf "Source to Image"
