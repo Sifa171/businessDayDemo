@@ -28,8 +28,7 @@ This demo deals with development and operational issues too and takes roughly a 
 
 ### Failover Scenerios
   1. Pod crashes
-  2. Liveness probe fails
-  3. Readiness probe fails
+  2. Health Checks fail
 
 ### Logging & Debugging
   1. Debug Terminal
@@ -117,8 +116,12 @@ oc logs -f $POD_ID
 
 ### Failover Scenerios
 1. Pod crashes
-2. Liveness probe fails
-3. Readiness probe fails
+  - Just use commands like 'oc delete pod $POD_ID' or 'exit 0' inside of the pod
+2. Health Checks fail
+  - To show how Health Checks work and what they can do replace the DeploymentConfig and show what happens in the web interface.
+  ```
+  oc replace -f misc/scripts/dc-with-failures.yaml
+  ```
 
 ### Logging & Debugging
 1. Debug Terminal
