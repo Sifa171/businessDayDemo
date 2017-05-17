@@ -48,6 +48,11 @@ If you choosed the automated way then use the script this way and follow the ste
 ```
 ./start-demo.sh <OPENSHIFT_MASTER_URL> <PROJECTNAME> <PATH_TO_YOUR_CLONED_REPO> <EAP_OR_WILDFLY>
 ```
+For example:
+
+```
+./start-demo.sh https://your-openshift-master.com:8443 businessDayDemo ~/path/to/repo wildfly
+```
 
 Otherwise you can do it manually!
 To use this demo create a new project in your OpenShift 3 instance, switch into it and clone this repo.
