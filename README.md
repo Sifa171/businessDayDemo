@@ -126,7 +126,7 @@ oc logs -f $POD_ID
 ### Logging & Debugging
 1. Debug Terminal
   - While the deployment is running you can find a link at the bottom of the page that directs you to a debug terminal
-  
+![  Debug Terminal](https://github.com/Sifa91/businessDayDemo/blob/master/misc/img/debug_terminal.png)
 2. EFK
 
 ### Development Tools
