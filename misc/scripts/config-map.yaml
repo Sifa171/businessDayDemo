@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: new-config
+data:
+  event: "JBoss Business Day"
+  year: "2017"

@@ -25,7 +25,7 @@
       {
          "description": "Git source URI for application",
          "name": "GIT_URI",
-         "value": "https://github.com/jorgemoralespou/openshift3mlbparks.git"
+         "value": "https://github.com/Sifa91/businessDayDemo.git"
       },
       {
          "description": "Git branch/tag reference",
@@ -319,12 +319,6 @@
                               "protocol": "TCP"
                            }
                         ],
-                        "readinessProbe": {
-                           "httpGet": {
-                              "path": "/",
-                              "port": 8080
-                           }
-                        },
                         "env": [
                            {
                               "name": "MONGODB_USER",

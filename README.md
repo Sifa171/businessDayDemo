@@ -3,7 +3,7 @@
 
 This is a short demo of OpenShift 3, as part of the so called <b>Viada JBoss Business Day 2017</b> in Frankfurt.
 
-The demo deals with development and operational issues too.
+This demo deals with development and operational issues too and takes roughly a hour.
 
  If you want to reuse this demo, just follow the [instructions][f1572854] explained at the bottom of the page.    
 ## Agenda
@@ -17,9 +17,12 @@ The demo deals with development and operational issues too.
   2. Docker Strategy
     - How to use Docker Images
     - Logs
-  3. Deployment Strategies
+  3. Deployment Strategies and configuration
     - Recreate
     - Rolling
+  4. Configuration
+    - Config Maps
+    - Secrets
 
   [f1572854]: https://github.com/Sifa91/businessDayDemo#how-to-use-this-demo "How to"
 
@@ -53,8 +56,8 @@ cd cd $PATH_TO_YOUR_CLONED_REPO
   - For explanation just use [this][aa426728] presentation
   - First create the template in your project and process it
   ```
-  oc create -f mlbparks-template-eap.json
-  oc new-app --template=mlbparks-eap
+  oc create -f mlbparks-template-wildfly.json
+  oc new-app --template=mlbparks-wildfly
   ```
   - To follow logs from any pod use
 ```
@@ -97,6 +100,20 @@ oc logs -f $POD_ID
   oc replace -f misc/scripts/dc-with-rolling-upgrade.yaml
   oc rollout latest dc/mlbparks
   ```
+4. Configuration
+  - If you would like to ENV multiple times, then you should use ConfigMaps
+  ```
+  oc create -f misc/scripts/config-map.yaml
+  oc replace -f misc/scripts/dc-with-config-map.yaml
+  ```
+  Navigate to the terminal in the web interface or use 'oc rsh $POD_ID' to show the new ENVs.
+
+  - In some cases you would like to use a confidential file inside of a Pod, which should not be stored unencrypted in the platform. It is time for secrets!
+  ```
+  oc create secret generic my-secret --from-file=misc/scripts/testfileforsecret.md
+  oc replace -f misc/scripts/dc-with-secrets.yaml
+  ```
+  Navigate to the terminal in the web interface or use 'oc rsh $POD_ID' to show the mounted file.
 
 ### Failover Scenerios
 1. Pod crashes
