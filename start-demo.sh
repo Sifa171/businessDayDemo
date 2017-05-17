@@ -5,7 +5,7 @@
 #
 
 usage() {
-        echo "Usage: $0 <OPENSHIFT_MASTER_URL> <PROJECTNAME> <PATH_TO_YOUR_CLONED_REPO>"
+        echo "Usage: $0 <OPENSHIFT_MASTER_URL> <PROJECTNAME> <PATH_TO_YOUR_CLONED_REPO> <EAP_OR_WILDFLY>"
 }
 
 if [ -z "$1" ]; then

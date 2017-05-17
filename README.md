@@ -42,6 +42,14 @@ This demo deals with developmental and operational issues and takes roughly a ho
 ### Q&A
 
 ## How to use this demo
+There are two ways to use this demo. You can use the 'start-demo.sh' script or you can do it step by step manually.
+
+If you choosed the automated way then use the script this way and follow the steps in the script.
+```
+./start-demo.sh <OPENSHIFT_MASTER_URL> <PROJECTNAME> <PATH_TO_YOUR_CLONED_REPO> <EAP_OR_WILDFLY>
+```
+
+Otherwise you can do it manually!
 To use this demo create a new project in your OpenShift 3 instance, switch into it and clone this repo.
 ```
 oc login $OPENSHIFT_MASTER_URL
