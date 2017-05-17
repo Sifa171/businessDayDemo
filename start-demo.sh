@@ -187,13 +187,57 @@ echo "####################################################################"
 
 oc replace -f misc/scripts/dc-with-rolling-upgrade.yaml
 
+read -p 'Did you explain deployment strategies? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+read -p 'Would you like to show what config maps do? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+
 
 echo ""
 echo ""
 echo "####################################################################"
-echo "########################## Logging out #############################"
+echo "############## Creating Config-Map and deploy ######################"
+echo "####################################################################"
+
+oc create -f misc/scripts/config-map.yaml
+oc replace -f misc/scripts/dc-with-config-map.yaml
+
+read -p 'Did you show the new ENVs? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+read -p 'Would you like to show what secrets do? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+
+echo ""
+echo ""
+echo "####################################################################"
+echo "############## Creating secrets and deploy ######################"
+echo "####################################################################"
+
+oc create secret generic my-secret --from-file=misc/scripts/testfileforsecret.md
+oc replace -f misc/scripts/dc-with-secrets.yaml
+
+read -p 'Did you show the POD crahses? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+read -p 'Would you like to show what happens if a health check fails? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+
+echo ""
+echo ""
+echo "####################################################################"
+echo "############## Creating health checks with failures  and deploy ####"
+echo "####################################################################"
+
+oc replace -f misc/scripts/dc-with-failures.yaml
+
+read -p 'Did you show the EFK? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+read -p 'Did you show the JBoss Tools? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+read -p 'Did you show "oc cluster up"? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+read -p 'Did you show MiniShift? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+
+echo ""
+echo ""
+echo "####################################################################"
+echo "########################## Shutting down demo ######################"
 echo "####################################################################"
 
 oc logout
 
-echo "Finished"
+echo ""
+echo ""
+echo "####################################################################"
+echo "########################## Finished ################################"
+echo "####################################################################"

@@ -55,7 +55,8 @@ For example:
 ```
 
 Otherwise you can do it manually!
-To use this demo create a new project in your OpenShift 3 instance, switch into it and clone this repo.
+Login to your OpenShift instance, create a new project and clone this repo.
+
 ```
 oc login $OPENSHIFT_MASTER_URL
 oc new-project $PROJECTNAME
