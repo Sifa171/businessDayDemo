@@ -103,9 +103,7 @@ oc logs -f $POD_ID
 <i>Now it is time to explain the different kinds of deployment strategies based on the mlbparks DeploymentConfig. Start with 'Recreate'! Just do it live in the web interface</i>
   - If you finished explaining 'recreate' follow these steps and explain what exactly happens. At this point you could make some code changes, push them and make a new build to show that the old version is active until the new pod is ready. (Hint: Use Eclipse and explain the JBoss Tools)
   ```
-  oc start-build analyze --follow
   oc replace -f misc/scripts/dc-with-rolling-upgrade.yaml
-  oc rollout latest dc/mlbparks
   ```
 4. Configuration
   - If you would like to ENV multiple times, then you should use ConfigMaps

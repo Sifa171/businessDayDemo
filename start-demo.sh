@@ -52,6 +52,7 @@ echo "####################################################################"
 echo "##################### Starting Demo  ###############################"
 echo "####################################################################"
 
+cd ${PATH_TO_YOUR_CLONED_REPO}
 
 read -p 'Press <Return> to continue, <Ctrl-c> to cancel' -n 1 -r
 
@@ -91,6 +92,7 @@ echo "####################################################################"
 
 oc create -f ${EAP_OR_WILDFLY}
 
+read -p 'Did you explain the template? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
 read -p 'Would you like to process the "MLB Parks" template? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
 
 echo ""
@@ -100,6 +102,91 @@ echo "#############  Processing template '${TEMPLATE}' #########"
 echo "####################################################################"
 
 oc new-app --template=${TEMPLATE}
+
+read -p 'Would you like to follow the buildlogs? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+
+echo ""
+echo ""
+echo "####################################################################"
+echo "#############  Following Buildlogs  ################################"
+echo "####################################################################"
+
+BUILDLOGS=$(oc get pods | grep -i build | awk '{print $1}')
+oc logs -f ${BUILDLOGS}
+
+read -p 'Would you like to influence the buildprocess? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+
+echo ""
+echo ""
+echo "####################################################################"
+echo "#############  Creating assemble script and starting a new build  ##"
+echo "####################################################################"
+
+mkdir -p .s2i/bin
+cp misc/scripts/assemble .s2i/bin/
+oc start-build mlbparks --follow
+
+read -p 'Would you like to define healt checks? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+
+echo ""
+echo ""
+echo "####################################################################"
+echo "#############  Defining health checks  #############################"
+echo "####################################################################"
+
+oc replace -f misc/scripts/dc-with-health-checks.yaml
+
+read -p 'Did you explain health checks? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+
+echo ""
+echo ""
+echo "####################################################################"
+echo "#############  It is time for the docker strategy  ######## ########"
+echo "####################################################################"
+
+read -p 'Would you like to create an ImageStream and a BuildConfig? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+
+echo ""
+echo ""
+echo "####################################################################"
+echo "############## Creating ImageStream and BuildConfig ################"
+echo "####################################################################"
+
+oc create -f misc/scripts/is-analyze-image.yaml
+oc create -f misc/scripts/bc-analyze-image.yaml
+
+read -p 'Would you like to start the dockerbuild? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+
+echo ""
+echo ""
+echo "####################################################################"
+echo "############## Starting Dockerbuild ################################"
+echo "####################################################################"
+
+oc start-build analyze --follow
+
+read -p 'Would you like to run the analye image? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+
+echo ""
+echo ""
+echo "####################################################################"
+echo "############## Starting analyze container ##########################"
+echo "####################################################################"
+
+IMAGE_REGISTRY_IP=$(oc get svc -n default | awk '{if ($1 == "docker-registry") print $2;}')
+oc run analyze -it --image=${IMAGE_REGISTRY_IP}/${PROJECTNAME}/analyze --restart=Always
+
+read -p 'Would you like to show some deployment strategies? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+read -p 'Did you explain "recreate"? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+
+echo ""
+echo ""
+echo "####################################################################"
+echo "############## Changing to rolling upgrade #########################"
+echo "####################################################################"
+
+oc replace -f misc/scripts/dc-with-rolling-upgrade.yaml
+
 
 echo ""
 echo ""
