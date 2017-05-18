@@ -4,7 +4,9 @@
 This is a short demo of OpenShift 3, as part of <b>Viada JBoss Business Day 2017</b> in Frankfurt.
 
 This demo deals with developmental and operational issues and takes roughly a hour.
-You can find the presentation here!
+You can find the presentation [here][2374f882]!
+
+  [2374f882]: https://github.com/Sifa91/businessDayDemo/blob/master/misc/BusinessDayPresentation.pdf "Presentation"
 
 If you want to reuse this demo, just follow the [instructions][f1572854] at the bottom of the page.    
 ## Agenda
