@@ -5,4 +5,4 @@ RUN yum install -y telnet traceroute openssl java-1.8.0-openjdk-devel && yum cle
 COPY startup.sh /sbin/startup.sh
 RUN chmod +x /sbin/startup.sh
 
-ENTRYPOINT ["startup.sh"]
+CMD ["startup.sh"]
