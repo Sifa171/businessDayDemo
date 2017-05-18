@@ -104,17 +104,7 @@ echo "####################################################################"
 oc new-app --template=${TEMPLATE}
 
 read -p 'Would you like to follow the buildlogs? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
-
-echo ""
-echo ""
-echo "####################################################################"
-echo "#############  Following Buildlogs  ################################"
-echo "####################################################################"
-
-BUILDLOGS=$(oc get pods | grep -i build | awk '{print $1}')
-echo "${BUILDLOGS}"
-oc logs -f ${BUILDLOGS}
-
+read -p 'Did you show the build logs? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
 read -p 'Would you like to influence the buildprocess? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
 
 echo ""
@@ -174,8 +164,9 @@ echo "####################################################################"
 echo "############## Starting Dockerbuild ################################"
 echo "####################################################################"
 
-oc start-build analyze --follow
+oc start-build analyze
 
+read -p 'Did you show the build logs? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
 read -p 'Would you like to run the analye image? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
 
 echo ""
@@ -186,7 +177,7 @@ echo "####################################################################"
 
 IMAGE_REGISTRY_IP=$(oc get svc -n default | awk '{if ($1 == "docker-registry") print $2;}')
 echo "${IMAGE_REGISTRY_IP}"
-oc run analyze -it --image=${IMAGE_REGISTRY_IP}/${PROJECTNAME}/analyze --restart=Always
+oc run analyze --image=${IMAGE_REGISTRY_IP}:5000/${PROJECTNAME}/analyze --restart=Always
 
 read -p 'Would you like to show some deployment strategies? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
 read -p 'Did you explain "recreate"? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
