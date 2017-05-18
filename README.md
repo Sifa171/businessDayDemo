@@ -4,8 +4,9 @@
 This is a short demo of OpenShift 3, as part of <b>Viada JBoss Business Day 2017</b> in Frankfurt.
 
 This demo deals with developmental and operational issues and takes roughly a hour.
+You can find the presentation here!
 
- If you want to reuse this demo, just follow the [instructions][f1572854] at the bottom of the page.    
+If you want to reuse this demo, just follow the [instructions][f1572854] at the bottom of the page.    
 ## Agenda
 ### Build and Deploy an image
   1. Source to Image
