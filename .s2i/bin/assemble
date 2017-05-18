@@ -1,4 +1,4 @@
 #!/bin/bash
 echo "-----> Starting test...!"
-./opt/eap/bin/openshift-launch.sh
+exec /opt/eap/bin/openshift-launch.sh
 echo "-----> Finished test...!"
