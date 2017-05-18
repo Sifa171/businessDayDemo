@@ -1,4 +1,0 @@
-#!/bin/bash
-echo "-----> Starting test...!"
-$STI_SCRIPTS_PATH/assemble
-echo "-----> Finished test...!"

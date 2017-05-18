@@ -39,7 +39,6 @@ This demo deals with developmental and operational issues and takes roughly a ho
   2. oc cluster up
   3. minishift
 
-### Q&A
 
 ## How to use this demo
 There are two ways to use this demo. You can use the 'start-demo.sh' script or you can do it step by step manually.

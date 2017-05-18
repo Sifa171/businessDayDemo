@@ -60,7 +60,7 @@ echo "####################################################################"
 echo "###################### OpenShift login  ############################"
 echo "####################################################################"
 
-oc login ${masterUrl}
+oc login ${OPENSHIFT_MASTER_URL}
 
 echo ""
 echo ""
@@ -112,6 +112,7 @@ echo "#############  Following Buildlogs  ################################"
 echo "####################################################################"
 
 BUILDLOGS=$(oc get pods | grep -i build | awk '{print $1}')
+echo ${BUILDLOGS}
 oc logs -f ${BUILDLOGS}
 
 read -p 'Would you like to influence the buildprocess? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
