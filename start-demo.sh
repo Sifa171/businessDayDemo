@@ -112,7 +112,7 @@ echo "#############  Following Buildlogs  ################################"
 echo "####################################################################"
 
 BUILDLOGS=$(oc get pods | grep -i build | awk '{print $1}')
-echo ${BUILDLOGS}
+echo "${BUILDLOGS}"
 oc logs -f ${BUILDLOGS}
 
 read -p 'Would you like to influence the buildprocess? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
@@ -127,7 +127,7 @@ mkdir -p .s2i/bin
 cp misc/scripts/assemble .s2i/bin/
 oc start-build mlbparks --follow
 
-read -p 'Would you like to define healt checks? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+read -p 'Would you like to define health checks? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
 
 echo ""
 echo ""
@@ -175,6 +175,7 @@ echo "############## Starting analyze container ##########################"
 echo "####################################################################"
 
 IMAGE_REGISTRY_IP=$(oc get svc -n default | awk '{if ($1 == "docker-registry") print $2;}')
+echo "${IMAGE_REGISTRY_IP}"
 oc run analyze -it --image=${IMAGE_REGISTRY_IP}/${PROJECTNAME}/analyze --restart=Always
 
 read -p 'Would you like to show some deployment strategies? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
