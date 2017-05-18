@@ -120,12 +120,22 @@ read -p 'Would you like to influence the buildprocess? Press <return> to continu
 echo ""
 echo ""
 echo "####################################################################"
-echo "#############  Creating assemble script and starting a new build  ##"
+echo "#############  Creating assemble script   ##########################"
 echo "####################################################################"
 
 mkdir -p .s2i/bin
 cp misc/scripts/assemble .s2i/bin/
-oc start-build mlbparks --follow
+
+read -p 'Did you commit and push changes? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
+
+echo ""
+echo ""
+echo "####################################################################"
+echo "#############  Starting a new build  ###############################"
+echo "####################################################################"
+
+
+oc start-build mlbparks
 
 read -p 'Would you like to define health checks? Press <return> to continue, <Ctrl-c> to cancel' -n 1 -r
 

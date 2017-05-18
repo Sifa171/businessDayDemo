@@ -1,4 +1,0 @@
-#!/bin/bash
-echo "-----> Starting test...!"
-exec /usr/local/s2i/assemble
-echo "-----> Finished test...!"
